@@ -1,0 +1,94 @@
+@import './element-ui.scss';
+@import './common/index.scss';
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app{
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+div:focus{
+  outline: none;
+ }
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+//main-container全局样式
+.app-main{
+  min-height: 100%
+}
+
+.app-container {
+  padding: 20px;
+}
+.text-link{
+  color: $theme;
+  cursor: pointer;
+}
+.form-text .el-form-item{
+  margin-bottom:0px !important;
+}
+.avatar-55{
+  width: 55px;
+    height: 55px;
+    display: inline-block;
+    border-radius: 50%;
+}
+.avatar-36{
+  width: 36px;
+    height: 36px;
+    display: inline-block;
+    border-radius: 50%;
+}

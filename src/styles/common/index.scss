@@ -1,0 +1,79 @@
+@import './_base.scss';
+@import './_size.scss';
+.flex-one {
+  flex: 1;
+}
+
+.flex-two {
+  flex: 2;
+}
+
+.box-flex,
+.flex-box {
+  display: flex;
+}
+
+.df-center {
+  display: flex;
+  align-items: center;
+}
+
+.text-indent {
+  text-indent: 2em;
+}
+
+.cf:before,
+.cf:after {
+  content: "";
+  display: table;
+}
+
+.cf:after,
+.cl {
+  clear: both;
+}
+
+.cf {
+  zoom: 1;
+}
+
+.vm {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right !important;
+}
+
+.tc {
+  text-align: center !important;
+}
+
+.tl {
+  text-align: left !important;
+}
+
+.tr {
+  text-align: right !important;
+}
+
+.fc3 {
+  color: #333;
+}
+
+.fc6 {
+  color: #666;
+}
+
+.fc8 {
+  color: #888;
+}
+
+.fc3 {
+  color: #333;
+}
