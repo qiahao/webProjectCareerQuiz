@@ -1,15 +1,11 @@
 <template>
   <div class="wrapper">
     <h1>职业测评</h1>
-    <div class="tc">
-      <el-button type="primary" @click="handlerSumimt">提交</el-button>
-      <el-button @click="handlerReset">重做</el-button>
-    </div>
     <div v-for="(cate, cateIndex) in list" :key="cateIndex" class="mtb50">
 
       <h2>{{cate.title}}</h2>
       <el-table :data="cate.list" style="width: 100%">
-        <el-table-column type="index" label="序号" width="50"></el-table-column>
+        <el-table-column prop="index" label="序号" width="50"> </el-table-column>
         <el-table-column label="问题描述" width="450">
           <template slot-scope="scope">
             <div v-if="scope.row.subject">{{scope.row.subject}}</div>
@@ -89,10 +85,7 @@
 </template>
 
 <script>
-  import {
-    personalityData
-  } from '@data'
-
+  import { personalityData } from '@data'
   const typesMap = {
     E: '外向',
     I: '内向',
@@ -109,7 +102,7 @@
   export default {
     data() {
       return {
-        list: personalityData.questionCategory,
+        list: formatData(personalityData.questionCategory),
         // formatList: [], // 展开后的list
         types,
         typesMap,
@@ -176,8 +169,10 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.submitResult(result)
-        }).catch(() => {})
+          return this.submitResult(result)
+        }).catch(() => {
+          return
+        })
       },
       handlerReset() {
         this.formatList.forEach(item => {
@@ -195,6 +190,16 @@
     }
   }
 
+  function formatData(questionCategory) {
+    let index = 0
+    questionCategory.forEach(cate => {
+      cate.list.forEach(question => {
+        question.index = index++
+      })
+    })
+    return questionCategory
+  }
+
 </script>
 
 <style lang="scss">
@@ -204,8 +209,8 @@
 
   .el-row {
     border-bottom: 1px solid #ebeef5;
-    padding: 5px ;
-    &:last-child{
+    padding: 5px;
+    &:last-child {
       border-bottom: none;
     }
   }
