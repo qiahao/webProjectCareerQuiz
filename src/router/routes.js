@@ -14,6 +14,11 @@ export default [
     component: () => import('@/views/personalityTest/index.vue')
   },
   {
+    path: '/occupationalValues',
+    name: 'occupationalValues',
+    component: () => import('@/views/occupationalValues/index.vue')
+  },
+  {
     path: '/404',
     name: '404',
     component: () => import('@/views/404.vue')
