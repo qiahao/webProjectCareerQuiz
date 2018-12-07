@@ -10,17 +10,29 @@
       <div v-for="(cate, cateIndex) in list" :key="cateIndex" class="mtb30">
 
         <h2>{{cate.title}}</h2>
-        <el-table :data="cate.list" style="width: 100%">
+        <el-table :data="cate.list" style="width: 100%" v-if="!(cateIndex % 2)">
           <el-table-column prop="index" label="序号" width="50"> </el-table-column>
           <el-table-column label="问题描述" width="450">
             <template slot-scope="scope">
               <div v-if="scope.row.subject">{{scope.row.subject}}</div>
-              <div v-for="(option, optionIndex) in scope.row.option" :key="optionIndex">{{option.key}}: {{option.label}}</div>
+              <!-- <div v-for="(option, optionIndex) in scope.row.option" :key="optionIndex">{{option.key}}: {{option.label}}</div> -->
             </template>
           </el-table-column>
           <el-table-column label="选项">
             <template slot-scope="scope">
-              <el-radio v-for="(option, optionIndex) in scope.row.option" :key="optionIndex" v-model="scope.row.answer" :label="option.value">{{option.key}}</el-radio>
+              <div v-for="(option, optionIndex) in scope.row.option" :key="optionIndex">
+                <el-radio v-model="scope.row.answer" :label="option.value">{{option.key}}: {{option.label}}</el-radio>
+              </div>
+            </template>
+          </el-table-column>
+        </el-table>
+        <el-table :data="cate.list" style="width: 100%" v-else>
+          <el-table-column prop="index" label="序号" width="50"> </el-table-column>
+          <el-table-column label="选项">
+            <template slot-scope="scope">
+              <div v-for="(option, optionIndex) in scope.row.option" :key="optionIndex">
+                <el-radio v-model="scope.row.answer" :label="option.value">{{option.key}}: {{option.label}}</el-radio>
+              </div>
             </template>
           </el-table-column>
         </el-table>
@@ -201,7 +213,7 @@ function formatData(questionCategory) {
   let index = 0
   questionCategory.forEach(cate => {
     cate.list.forEach(question => {
-      question.index = index++
+      question.index = ++index
     })
   })
   return questionCategory
@@ -221,5 +233,4 @@ function formatData(questionCategory) {
     border-bottom: none;
   }
 }
-
 </style>

@@ -16,13 +16,13 @@ export default [
   {
     path: '/personalityTest',
     name: 'personalityTest',
-    meta: { title: '职业价值观测试', menu: true },
+    meta: { title: '职业测评', menu: true },
     component: () => import('@/views/personalityTest/index.vue')
   },
   {
     path: '/occupationalValues',
     name: 'occupationalValues',
-    meta: { title: '职业测评', menu: true },
+    meta: { title: '职业价值观测试', menu: true },
     component: () => import('@/views/occupationalValues/index.vue')
   },
   {

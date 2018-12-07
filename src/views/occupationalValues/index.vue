@@ -96,7 +96,7 @@ export default {
     },
     submitResult(result) {
       this.result = result
-      // this.dialogVisible = true
+      this.dialogVisible = true
     }
   },
   created() {
