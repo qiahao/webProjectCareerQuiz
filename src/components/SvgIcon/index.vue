@@ -12,9 +12,7 @@ export default {
       type: String,
       required: true
     },
-    className: {
-      type: String
-    }
+    className: { type: String }
   },
   computed: {
     iconName() {

@@ -7,9 +7,7 @@ export default {
     return {}
   },
   mixins: [tableMixin],
-  components: {
-    UrmPagination
-  },
+  components: { UrmPagination },
   computed: {
     detailQuery() {
       let query = qs.stringify(this.assignQuery(this.query || {}))

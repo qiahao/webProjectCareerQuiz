@@ -10,8 +10,7 @@ export default {
       pageLayout: 'total, sizes, prev, pager, next, jumper'
     }
   },
-  watch: {
-  },
+  watch: {},
   computed: {
     selectLength() {
       return this.selectList.length
