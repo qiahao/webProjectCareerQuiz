@@ -1,0 +1,81 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "amd": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2015,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "html",
+    "vue"
+  ],
+  "globals": {
+    "wx": true,
+    "getApp": true,
+    "Page": true,
+    "Component": true,
+    "App": true,
+    "getCurrentPages": true
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "linebreak-style": ["off", "unix"],
+    "semi": ["error", "never"],
+    "no-inner-declarations": ["off"],
+    "no-debugger": ["off"],
+    "no-console": ["off"],
+    "no-undef": [2],
+    "block-spacing": ["error", "always"],
+    "brace-style": ["error", "1tbs", {
+      "allowSingleLine": true
+    }],
+    "comma-spacing": ["error", {
+      "before": false,
+      "after": true
+    }],
+    "comma-dangle": ["error", "never"],
+    "computed-property-spacing": ["error", "never"],
+    "func-call-spacing": ["error", "never"],
+    "function-paren-newline": ["error", "consistent"],
+    "key-spacing": ["error", {
+      "afterColon": true
+    }],
+    "keyword-spacing": ["error", {
+      "before": true,
+      "after": true
+    }],
+    "lines-between-class-members": ["error", "always"],
+    "no-multiple-empty-lines": ["error", {
+      "max": 1,
+      "maxEOF": 1
+    }],
+    "no-unneeded-ternary": ["error"],
+    "no-whitespace-before-property": ["error"],
+    "nonblock-statement-body-position": ["error", "below"],
+    "object-curly-newline": ["error", {
+      "multiline": true
+    }],
+    "object-curly-spacing": ["error", "always"],
+    "quotes": ["error", "single", {
+      "allowTemplateLiterals": true
+    }],
+    "space-before-blocks": ["error", "always"],
+    "space-before-function-paren": ["error", {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
+    "spaced-comment": ["error", "always"],
+    "space-unary-ops": ["error", {
+      "words": true,
+      "nonwords": false
+    }],
+    "space-infix-ops": ["error"]
+  }
+}

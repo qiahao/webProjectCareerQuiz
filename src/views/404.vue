@@ -27,10 +27,7 @@
 export default {
   name: 'page404',
   data() {
-    return {
-      // img_404,
-      // img_404_cloud
-    }
+    return {}
   },
   computed: {
     message() {
