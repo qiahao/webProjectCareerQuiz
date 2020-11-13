@@ -4,6 +4,10 @@
 
 const path = require('path')
 
+
+const args = parserArgv();
+const assetsRootDir = args.assetsRoot || 'dist';
+
 module.exports = {
   dev: {
 
@@ -53,7 +57,7 @@ module.exports = {
     index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname, `../${assetsRootDir}`),
     assetsSubDirectory: 'static',
 
     /**
@@ -86,4 +90,20 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
   }
+}
+
+/**
+ * 解析process.argv
+ */
+function parserArgv() {
+  var argvs = process.argv
+  const result = {};
+  argvs.forEach((arg, i) => {
+    const args = arg.split('=');
+    if (args.length == 2) {
+      const [key, value] = args;
+      result[key.trim()] = value.trim();
+    }
+  })
+  return result
 }
