@@ -42,7 +42,7 @@ $distance-map: (pd: padding, pt: padding-top, pb: padding-bottom, pr: padding-ri
 @for $i from 0 through 10 {
     $percent1: $i*5;
     $percent2: $i*5 + 50;
-    .wp#{$percent1} {width: $percent1 + % !important; }
-    .wp#{$percent2} {width: $percent2 + % !important; }
+    .wp#{$percent1} {width: $percent1 + '%' !important; }
+    .wp#{$percent2} {width: $percent2 + '%' !important; }
 }
 
