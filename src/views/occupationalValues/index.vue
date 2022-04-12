@@ -23,7 +23,7 @@
         <el-table-column prop="subject" label="题目"></el-table-column>
         <el-table-column label="选项" width="380">
           <template slot-scope="scope">
-            <el-radio v-for="(option, optionIndex) in scope.row.option" :key="optionIndex" v-model="scope.row.answer" :label="5 - optionIndex">{{option}} </el-radio>
+            <el-radio v-for="(option, optionIndex) in scope.row.option" :key="optionIndex" v-model="scope.row.answer" :label="5 - optionIndex">{{ option }} </el-radio>
           </template>
         </el-table-column>
       </el-table>
@@ -34,7 +34,7 @@
       </div>
 
       <el-dialog title="评估结果" :visible.sync="dialogVisible" width="50%">
-        <div class="mtb20">总得分： {{result}}</div>
+        <div class="mtb20">总得分： {{ result }}</div>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
           <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -66,8 +66,8 @@ export default {
     handlerSumimt() {
       let result = 0
       for (let i = 0, l = this.list.length; i < l; i++) {
-        let item = this.list[i]
-        let value = item.answer
+        const item = this.list[i]
+        const value = item.answer
         if (!value) {
           return this.$message({
             message: `请选择第${i + 1}题答案！`,

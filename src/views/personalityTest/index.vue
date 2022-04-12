@@ -1,110 +1,107 @@
 <template>
-  <div>
+  <div class="page">
     <navigation>
       <div class="nav">
         <router-link to="index">首页</router-link>
       </div>
     </navigation>
-    <div class="wrapper mtb20">
+    <div class="wrapper">
       <h2>职业测评</h2>
-      <div v-for="(cate, cateIndex) in list" :key="cateIndex" class="mtb30">
-
-        <h2>{{cate.title}}</h2>
-        <el-table :data="cate.list" style="width: 100%" v-if="!(cateIndex % 2)">
-          <el-table-column prop="index" label="序号" width="50"> </el-table-column>
-          <el-table-column label="问题描述" width="450">
-            <template slot-scope="scope">
-              <div v-if="scope.row.subject">{{scope.row.subject}}</div>
-              <!-- <div v-for="(option, optionIndex) in scope.row.option" :key="optionIndex">{{option.key}}: {{option.label}}</div> -->
+      <div :key="i" v-for="(cate, i) in list">
+        <h2>{{ cate.title }}</h2>
+        <el-table :data="cate.list" style="width: 100%" v-if="!(i % 2)">
+          <el-table-column label="序号" prop="index" width="50" />
+          <el-table-column label="问题描述" width="380">
+            <template #default="scope">
+              <div v-if="scope.row.subject">{{ scope.row.subject }}</div>
             </template>
           </el-table-column>
           <el-table-column label="选项">
-            <template slot-scope="scope">
-              <div v-for="(option, optionIndex) in scope.row.option" :key="optionIndex">
-                <el-radio v-model="scope.row.answer" :label="option.value">{{option.key}}: {{option.label}}</el-radio>
+            <template #default="scope">
+              <div :key="j" class="option-item" v-for="(option, j) in scope.row.option">
+                <el-radio :label="option.value" v-model="scope.row.answer">{{ option.key }}: {{ option.label }}</el-radio>
               </div>
             </template>
           </el-table-column>
         </el-table>
         <el-table :data="cate.list" style="width: 100%" v-else>
-          <el-table-column prop="index" label="序号" width="50"> </el-table-column>
+          <el-table-column label="序号" prop="index" width="50" />
           <el-table-column label="选项">
-            <template slot-scope="scope">
-              <div v-for="(option, optionIndex) in scope.row.option" :key="optionIndex">
-                <el-radio v-model="scope.row.answer" :label="option.value">{{option.key}}: {{option.label}}</el-radio>
+            <template #default="scope">
+              <div :key="j" class="option-item" v-for="(option, j) in scope.row.option">
+                <el-radio :label="option.value" v-model="scope.row.answer">{{ option.key }}: {{ option.label }}</el-radio>
               </div>
             </template>
           </el-table-column>
         </el-table>
       </div>
-      <div class="tc">
-        <el-button type="primary" @click="handlerSumimt">提交</el-button>
+      <div class="tc mtb20">
+        <el-button @click="handlerSumimt" type="primary">提交</el-button>
         <el-button @click="handlerReset">重做</el-button>
       </div>
 
-      <el-dialog title="评估结果" :visible.sync="dialogVisible" width="50%">
-        <h3 class="mtb20">总分</h3>
+      <el-dialog :visible.sync="dialogVisible" title="评估结果" width="50%">
+        <h2>总分</h2>
         <div class="row">
           <el-row>
             <el-col :span="12">
-              <el-col :span="8">E / {{typesMap.E}}</el-col>
-              <el-col :span="14">{{result.E}}</el-col>
+              <el-col :span="8">E / {{ typesMap.E }}</el-col>
+              <el-col :span="14">{{ result.E }}</el-col>
             </el-col>
             <el-col :span="12">
-              <el-col :span="8">I / {{typesMap.I}}</el-col>
-              <el-col :span="14">{{result.I}}</el-col>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :span="12">
-              <el-col :span="8">S / {{typesMap.S}}</el-col>
-              <el-col :span="14">{{result.S}}</el-col>
-            </el-col>
-            <el-col :span="12">
-              <el-col :span="8">N / {{typesMap.N}}</el-col>
-              <el-col :span="14">{{result.N}}</el-col>
+              <el-col :span="8">I / {{ typesMap.I }}</el-col>
+              <el-col :span="14">{{ result.I }}</el-col>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="12">
-              <el-col :span="8">T / {{typesMap.T}}</el-col>
-              <el-col :span="14">{{result.T}}</el-col>
+              <el-col :span="8">S / {{ typesMap.S }}</el-col>
+              <el-col :span="14">{{ result.S }}</el-col>
             </el-col>
             <el-col :span="12">
-              <el-col :span="8">F / {{typesMap.F}}</el-col>
-              <el-col :span="14">{{result.F}}</el-col>
+              <el-col :span="8">N / {{ typesMap.N }}</el-col>
+              <el-col :span="14">{{ result.N }}</el-col>
             </el-col>
           </el-row>
           <el-row>
             <el-col :span="12">
-              <el-col :span="8">J / {{typesMap.J}}</el-col>
-              <el-col :span="14">{{result.J}}</el-col>
+              <el-col :span="8">T / {{ typesMap.T }}</el-col>
+              <el-col :span="14">{{ result.T }}</el-col>
             </el-col>
             <el-col :span="12">
-              <el-col :span="8">P / {{typesMap.P}}</el-col>
-              <el-col :span="14">{{result.P}}</el-col>
+              <el-col :span="8">F / {{ typesMap.F }}</el-col>
+              <el-col :span="14">{{ result.F }}</el-col>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="12">
+              <el-col :span="8">J / {{ typesMap.J }}</el-col>
+              <el-col :span="14">{{ result.J }}</el-col>
+            </el-col>
+            <el-col :span="12">
+              <el-col :span="8">P / {{ typesMap.P }}</el-col>
+              <el-col :span="14">{{ result.P }}</el-col>
             </el-col>
           </el-row>
         </div>
         <h3 class="mtb20">评估类型</h3>
         <div class="row">
           <el-row>
-            <el-col :span="6" v-for="(r, i) in finalResult" :key="i">{{r}}</el-col>
+            <el-col :key="i" :span="6" v-for="(r, i) in finalResult">{{ r }}</el-col>
           </el-row>
         </div>
 
-        <div slot="footer" class="dialog-footer">
+        <div class="dialog-footer" slot="footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          <el-button @click="dialogVisible = false" type="primary">确 定</el-button>
         </div>
       </el-dialog>
-
     </div>
   </div>
 </template>
 
 <script>
-import { personalityData } from '@data'
+import { personalityData } from '@/data'
 const typesMap = {
   E: '外向',
   I: '内向',
@@ -140,10 +137,10 @@ export default {
       return list
     },
     resultList: function () {
-      let list = []
+      const list = []
       for (const key in this.result) {
         if (this.result.hasOwnProperty(key)) {
-          let item = {
+          const item = {
             key: key,
             value: this.result[key]
           }
@@ -153,7 +150,7 @@ export default {
       return list
     },
     finalResult: function () {
-      let list = []
+      const list = []
       list.push(this.result.E >= this.result.I ? 'E/' + this.typesMap.E : 'I/' + this.typesMap.I)
       list.push(this.result.S >= this.result.N ? 'S/' + this.typesMap.S : 'N/' + this.typesMap.N)
       list.push(this.result.T >= this.result.F ? 'T/' + this.typesMap.T : 'F/' + this.typesMap.F)
@@ -167,13 +164,13 @@ export default {
       // 缓存获取， 处理刷新数据丢失
     },
     handlerSumimt() {
-      let result = {}
+      const result = {}
       types.forEach(k => {
         result[k] = 0
       })
       for (let i = 0, l = this.formatList.length; i < l; i++) {
-        let item = this.formatList[i]
-        let key = item.answer
+        const item = this.formatList[i]
+        const key = item.answer
         if (!key) {
           return this.$message({
             message: `请选择第${i + 1}题答案！`,
@@ -187,11 +184,13 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(() => {
-        return this.submitResult(result)
-      }).catch(() => {
-        return
       })
+        .then(() => {
+          return this.submitResult(result)
+        })
+        .catch(() => {
+          return
+        })
     },
     handlerReset() {
       this.formatList.forEach(item => {
@@ -202,7 +201,6 @@ export default {
       this.result = result
       this.dialogVisible = true
     }
-
   },
   created() {
     this.init()
@@ -218,10 +216,12 @@ function formatData(questionCategory) {
   })
   return questionCategory
 }
-
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.page {
+  padding-bottom: 20px;
+}
 .row {
   border: 1px solid #ebeef5;
 }
@@ -231,6 +231,33 @@ function formatData(questionCategory) {
   padding: 5px;
   &:last-child {
     border-bottom: none;
+  }
+}
+h2 {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.option-item {
+  float: left;
+  width: 350px;
+  padding-right: 5px;
+}
+:deep {
+  .option-item {
+    .el-radio,
+    .el-radio__input {
+      white-space: normal;
+    }
+  }
+}
+/deep/ {
+  .option-item {
+    .el-radio,
+    .el-radio__input {
+      white-space: normal;
+    }
   }
 }
 </style>

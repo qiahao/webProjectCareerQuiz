@@ -1,0 +1,74 @@
+// element reset in crud
+
+// .el-button + .el-button {
+//   margin-left: 10px;
+// }
+
+// element reset in crud end
+
+// t-edit
+// t-edit end
+
+// t-form
+// t-form end
+
+// t-opr
+.t-opr-confirm + .t-opr-confirm,
+.t-opr-confirm + .el-button,
+.t-opr-confirm + .el-link,
+.t-opr-confirm + .t-opr-confirm,
+.el-button + .t-opr-confirm,
+.el-link + .t-opr-confirm {
+  margin-left: 10px;
+}
+
+// t-opr end
+
+// t-pagination
+// t-pagination end
+
+// t-query
+.t-query {
+  margin-bottom: 10px;
+  &.el-form--inline {
+    & > div {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    & > .el-input,
+    & > .el-select {
+      display: inline-block;
+      margin-bottom: 10px;
+      margin-right: 10px;
+    }
+    & > .el-input {
+      width: 200px;
+    }
+  }
+}
+
+// t-query end
+
+// t-table
+// t-table end
+
+// t-tools
+.t-tools {
+  display: flex;
+  margin-bottom: 10px;
+  &__left {
+    flex: 1;
+  }
+  .el-dropdown + .el-dropdown,
+  .el-button + .el-dropdown {
+    margin-left: 10px;
+  }
+}
+
+// t-tools end
+
+// t-view
+// t-view end
+
+// t-widgets
+// t-widgets end

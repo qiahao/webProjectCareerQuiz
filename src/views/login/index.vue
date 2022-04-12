@@ -3,20 +3,19 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {}
-    },
-    components: {},
-    computed: {},
-    watch: {},
-    methods: {},
-    create() {}
-  }
+export default {
+  data() {
+    return {}
+  },
+  components: {},
+  computed: {},
+  watch: {},
+  methods: {},
+  create() {}
+}
 
 </script>
 
 <style>
-
 
 </style>

@@ -3,15 +3,15 @@ export * from 'vma-vue-assist/dist/static/js/utils'
  * Created by jiachenpan on 16/11/18.
  */
 export const webpackRequire2obj = (r, exinclude) => {
-  let contents = {}
+  const contents = {}
   const paths = r.keys().filter((p) => {
     return exinclude.indexOf(p) === -1
   })
 
   console.log(paths)
-  for (let p of paths) {
-    let fn = r(p).default ? r(p).default : r(p)
-    let k = p.match(/(\w+-?\w+).js$/)[1]
+  for (const p of paths) {
+    const fn = r(p).default ? r(p).default : r(p)
+    const k = p.match(/(\w+-?\w+).js$/)[1]
     contents[k] = fn
   }
   return contents
@@ -41,8 +41,7 @@ export function parseTime(time, cFormat) {
   if (typeof time === 'object') {
     date = time
   } else {
-    if (('' + time).length === 10)
-      time = parseInt(time) * 1000
+    if (('' + time).length === 10) { time = parseInt(time) * 1000 }
     date = new Date(time)
   }
   const formatObj = {
@@ -56,8 +55,7 @@ export function parseTime(time, cFormat) {
   }
   const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
     let value = formatObj[key]
-    if (key === 'a')
-      return ['一', '二', '三', '四', '五', '六', '日'][value - 1]
+    if (key === 'a') { return ['一', '二', '三', '四', '五', '六', '日'][value - 1] }
     if (result.length > 0 && value < 10) {
       value = '0' + value
     }
@@ -89,7 +87,7 @@ export function formatTime(time, option) {
   }
 }
 export const fmtGetTime = (string) => {
-  let date = new Date(string)
-  let floorDate = Math.floor(date.getTime())
+  const date = new Date(string)
+  const floorDate = Math.floor(date.getTime())
   return floorDate
 }

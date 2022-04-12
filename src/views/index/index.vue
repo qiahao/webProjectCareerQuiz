@@ -2,7 +2,7 @@
   <div>
     <navigation>
       <div class="nav">
-        <router-link  v-for="(item, index) in routes" :key="index" :to="item.path">{{item.meta.title}}</router-link>
+        <router-link v-for="(item, index) in routes" :key="index" :to="item.path">{{ item.meta.title }}</router-link>
       </div>
     </navigation>
 
